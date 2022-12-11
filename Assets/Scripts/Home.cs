@@ -2,28 +2,23 @@ using UnityEngine;
 
 public class Home : MonoBehaviour
 {
-    [SerializeField] private Wallet _wallet;
+    [SerializeField] private int _graphicsCardMaxNum = 30;
     [SerializeField] private Mining _mining;
-    [SerializeField] private GameObject _cardPrefab;
-    [SerializeField] private PlayerCards _playerCards;
-    private int _cardCount = 0;
+    private int _totalCards = 0;
 
-    private void OnTriggerEnter(Collider other)
+    public void AddCard()
     {
-        if (_playerCards.IsWithCard())
+        if (_totalCards < _graphicsCardMaxNum - 1)
         {
-            _cardCount++;
-            _playerCards.RemoveCard();
-            Debug.Log("карта поставлена");
-            if (!_mining.TryAddGraphicsCard())
-            {
-                Debug.Log("Затычка");
-                return;
-            }
-
-            GameObject card = Instantiate(_cardPrefab, transform.position + Vector3.up*_cardCount*1.1f, Quaternion.identity);
-            card.transform.parent = transform;
-            //visual            
+            _totalCards++;
+            _mining.AddGraphicsCard();
+            return;
         }
-    }   
+        EndOfGame();
+    }
+
+    private void EndOfGame()
+    {
+
+    }
 }

@@ -5,7 +5,7 @@ public class Mining : MonoBehaviour
 {
     private bool _isMining = true;
     private int _graphicsCardNum = 0;
-    [SerializeField] private int _graphicsCardMaxNum = 5;
+    [SerializeField] private int _graphicsCardMaxNum = 30;
     [SerializeField] private Wallet _wallet;
     [SerializeField] private float _graphicsCardCooldown = 1f;
     [SerializeField] private float _moneyPerCard = .05f;
@@ -21,9 +21,14 @@ public class Mining : MonoBehaviour
             _wallet.AddMoney(_moneyPerCard * _graphicsCardNum);
         }        
     }
+
+    public void AddGraphicsCard()
+    {
+        _graphicsCardNum++;
+    }
     public bool TryAddGraphicsCard()
     {
-        if(_graphicsCardNum < _graphicsCardMaxNum)
+        if(_graphicsCardNum < _graphicsCardMaxNum-1)
         {
             _graphicsCardNum++;
             return true;

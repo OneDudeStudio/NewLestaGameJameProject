@@ -10,8 +10,11 @@ public class PlayerCards : MonoBehaviour
     public void AddCard()
     {
         _isWithCard = true;
-        GameObject card = Instantiate(_cardPrefab, transform.position+Vector3.up*2, Quaternion.identity);
+        GameObject card = Instantiate(_cardPrefab, transform.position+Vector3.up, Quaternion.identity);
+        card.GetComponent<Card>().StopRotation();
         card.transform.parent = transform;
+        card.transform.localRotation = transform.rotation;
+        
     }
 
     public void RemoveCard()

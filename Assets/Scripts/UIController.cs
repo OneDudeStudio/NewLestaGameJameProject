@@ -7,6 +7,6 @@ public class UIController : MonoBehaviour
 
     public void ChangeCoinsText(float num)
     {
-        _coinsText.text = "Coins Now: " + num;//.ToString("0.00");
+        _coinsText.text = "Coins Now: " + num.ToString("0.00");
     }
 }

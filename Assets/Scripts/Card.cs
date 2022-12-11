@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Card : MonoBehaviour
+public class Card : Rotator
 {
     private void OnTriggerEnter(Collider other)
     {
