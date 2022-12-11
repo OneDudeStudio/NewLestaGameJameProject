@@ -9,6 +9,12 @@ public class Farm : MonoBehaviour
     [SerializeField] private bool _rotEbal;
     private int _cardCount = 0;
 
+    private void Start()
+    {
+        _playerCards = FindObjectOfType<PlayerCards>();
+        _home = FindObjectOfType<Home>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (_playerCards.IsWithCard() && _cardCount < _maxCards)
