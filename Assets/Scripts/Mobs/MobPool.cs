@@ -1,16 +1,17 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class MobPool : MonoBehaviour
 {
     [SerializeField] private List<Mob> _mobs;
+
     [SerializeField] private List<Transform> _spawnPoints;
     [SerializeField] private List<PathTrajectory> _trajectories;
     
-    private const int _cooldownInMilliseconds = 1000;
-    private float _lastSpawnTime;
+    private const int _coinsMobCooldownInMilliseconds = 2000;
+
+    private const int _minerMobCooldownInSeconds = 45;
 
     private void Start()
     {
@@ -29,12 +30,22 @@ public class MobPool : MonoBehaviour
             _mobs[i].HouseNumber = i;
             SpawnMob(_mobs[i], _spawnPoints[i].position);
         }
+
+        for (var i = _spawnPoints.Count; i < _mobs.Count; i++)
+        {
+            var spawnPosition = GetSpawnPosition(_mobs[i]);
+            SpawnMob(_mobs[i], spawnPosition);
+        }
     }
 
     private async void WaitAndRespawnMob(Mob mob)
     {
         mob.gameObject.SetActive(false);
-        await Task.Delay(_cooldownInMilliseconds);
+        
+        if (mob is MinerMob)
+            await Task.Delay(_minerMobCooldownInSeconds * 1000);
+        else
+            await Task.Delay(_coinsMobCooldownInMilliseconds);
 
         var spawnPosition = GetSpawnPosition(mob);
         SpawnMob(mob, spawnPosition);
@@ -52,6 +63,12 @@ public class MobPool : MonoBehaviour
 
     private void SetMobTrajectory(Mob mob)
     {
+        if (mob is MinerMob)
+        {
+            mob.setTrajectory(_trajectories);
+            return;
+        }
+        
         var trajectoryNumbers = mob.GetTrajectoryNumbers();
         var trajectories = new List<PathTrajectory>();
 
@@ -65,7 +82,10 @@ public class MobPool : MonoBehaviour
     
     private Vector3 GetSpawnPosition(Mob mob)
     {
-        var randomPointIndex = mob.HouseNumber;
+        var randomPointIndex = mob is MinerMob
+            ? Random.Range(0, _spawnPoints.Count)
+            : mob.HouseNumber;
+        
         return _spawnPoints[randomPointIndex].position;
     }
 }
