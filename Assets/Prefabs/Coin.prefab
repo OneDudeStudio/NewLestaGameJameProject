@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7650703741684209252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.65, y: 2.19, z: 0.67575383}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2356104589416837927}
@@ -59,9 +59,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cecabcda28719a4dbe34c1ecb4a2e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 1
   _rotSpeed: 2
-  _coinBody: {fileID: 2356104589416837927}
+  _body: {fileID: 2356104589416837927}
+  _cost: 1
 --- !u!1 &8336648292818905349
 GameObject:
   m_ObjectHideFlags: 0
