@@ -43,7 +43,7 @@ public class MobPool : MonoBehaviour
         mob.transform.position = position;
         mob.gameObject.SetActive(true);
         
-        mob.StartMovement();
+        //mob.StartMovement();
     }
 
     private Vector3 GetSpawnPosition()
