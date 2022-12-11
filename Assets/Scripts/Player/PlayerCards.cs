@@ -23,6 +23,7 @@ public class PlayerCards : MonoBehaviour
     {
         animatorManager.SetPickUpAnimation();
         _isWithCard = false;
-        Destroy(transform.GetChild(1).gameObject);
+        GameObject gameobjectForRemove = GetComponentInChildren<Card>().gameObject;
+        Destroy(gameobjectForRemove);
     }
 }
