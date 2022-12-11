@@ -7,8 +7,8 @@ public class Mining : MonoBehaviour
     private int _graphicsCardNum = 0;
     [SerializeField] private int _graphicsCardMaxNum = 5;
     [SerializeField] private Wallet _wallet;
-    [SerializeField] private float _graphicsCardCooldown = 10f;
-    [SerializeField] private int _moneyPerCard;
+    [SerializeField] private float _graphicsCardCooldown = 1f;
+    [SerializeField] private float _moneyPerCard = .05f;
 
     private void Start()
     {

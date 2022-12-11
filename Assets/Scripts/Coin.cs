@@ -4,7 +4,7 @@ using Random = UnityEngine.Random;
 
 public class Coin : MonoBehaviour
 {
-    [SerializeField] private int _cost = 5;
+    [SerializeField] private int _cost = 1;
     [SerializeField] private float _rotSpeed;
     [SerializeField] private Transform _coinBody;
 

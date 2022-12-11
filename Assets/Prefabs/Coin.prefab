@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cecabcda28719a4dbe34c1ecb4a2e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 5
+  _cost: 1
   _rotSpeed: 2
   _coinBody: {fileID: 2356104589416837927}
 --- !u!1 &8336648292818905349
