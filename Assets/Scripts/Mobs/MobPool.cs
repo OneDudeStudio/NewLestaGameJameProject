@@ -9,7 +9,7 @@ public class MobPool : MonoBehaviour
     [SerializeField] private List<Transform> _spawnPoints;
     [SerializeField] private List<PathTrajectory> _trajectories;
     
-    private const int _coinsMobCooldownInMilliseconds = 2000;
+    private const int _coinsMobCooldownInMilliseconds = 10000;
 
     private const int _minerMobCooldownInSeconds = 45;
 

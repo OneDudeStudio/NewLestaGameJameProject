@@ -1782,11 +1782,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c2384423f8804f4caceedfd611e7062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   _rotationSpeed: 400
+  _speed: 2
 --- !u!114 &7790764307878967528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1800,13 +1797,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 2
+  _trajectoryNumbers: 
   _visualMale: {fileID: 5256959863842228113}
   _visualFemale: {fileID: 7912590559816614479}
   animatorMaleManager: {fileID: 7968389178558641160}
   animatorFemaleManager: {fileID: 5323255764421463422}
   _minCoins: 1
   _maxCoins: 2
-  _coinPrefab: {fileID: 7650703741684209252, guid: f166b4c0ce692a64eb99e2c270ab8f2b, type: 3}
+  _coinPrefab: {fileID: 2488803340103315514, guid: f6dc988ceddc2d6458450bf2bba0150c, type: 3}
 --- !u!114 &7968389178558641160
 MonoBehaviour:
   m_ObjectHideFlags: 0
