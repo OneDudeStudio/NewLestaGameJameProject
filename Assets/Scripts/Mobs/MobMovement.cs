@@ -72,16 +72,13 @@ public class MobMovement : MonoBehaviour
             _targetPoint = position;
         }
 
-        RotateToPoint(_navMeshAgent.hasPath ? _navMeshAgent.path.corners[1] : _targetPoint);
+        RotateToPoint(_targetPoints[_targetPointIndex].position);
     }
 
     private void RotateToPoint(Vector3 position)
     {
         var direction = (position - transform.position).normalized;
-        var lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-
-        transform.rotation =
-            Quaternion.RotateTowards(transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
+        transform.forward = position;
     }
     
     public void Stop()
