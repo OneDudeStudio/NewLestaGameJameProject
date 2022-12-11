@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rotSpeed: 2
   _body: {fileID: 2356104589416837927}
-  _cost: 5
+  _cost: 1
   _coinBody: {fileID: 2356104589416837927}
 --- !u!1 &8336648292818905349
 GameObject:
