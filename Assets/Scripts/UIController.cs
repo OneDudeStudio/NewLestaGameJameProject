@@ -8,6 +8,7 @@ public class UIController : MonoBehaviour
     public GameObject _gameWinCCanvas;
     public GameObject _shopCanvas;
     public TextMeshProUGUI _coinsText;
+    public TextMeshProUGUI _anotherCoinText;
 
     
     private void Update()
@@ -36,5 +37,6 @@ public class UIController : MonoBehaviour
     public void ChangeCoinsText(float num)
     {
         _coinsText.text = "Всего монет: " + num.ToString("0.00");
+        _anotherCoinText.text = "Ваши очки: " + num.ToString("0.00");
     }
 }

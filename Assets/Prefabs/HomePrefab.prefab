@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2357072230408100037}
   m_LocalRotation: {x: -0.0016846283, y: -0.7071048, z: -0.7071048, w: 0.0016846283}
   m_LocalPosition: {x: -18.53, y: 1.61, z: -24.86}
-  m_LocalScale: {x: 17.557894, y: 10.582482, z: 7.814038}
+  m_LocalScale: {x: 35.11578, y: 21.16496, z: 15.628076}
   m_Children:
   - {fileID: 3204145542825101467}
   - {fileID: 323110295328722088}
@@ -1000,8 +1000,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3204145544331270976}
   - component: {fileID: 3204145544331270975}
+  - component: {fileID: 2082442207}
   m_Layer: 0
-  m_Name: Collider1 (18)
+  m_Name: FARm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1034,6 +1035,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2082442207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3204145544331270977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba6287088791a6440bf66406322d698c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIController: {fileID: 0}
 --- !u!1 &3204145544459630271
 GameObject:
   m_ObjectHideFlags: 0

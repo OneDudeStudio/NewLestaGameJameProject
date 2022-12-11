@@ -10,10 +10,26 @@ public class Shop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) => _isInShop = true;
     private void OnTriggerExit(Collider other) => _isInShop = false;
+    
+    public UIController UIController;
+
+
+    private void Awake()
+    {
+        UIController = FindObjectOfType<UIController>();
+    }
 
 
     private void Update()
     {
+        if (_isInShop)
+        {
+            UIController.SetCanvasActive(UIController._shopCanvas);
+        }
+        else
+        {
+            UIController.SetCanvasDeactive(UIController._shopCanvas);
+        }
         if (!_isInShop)
             return;
         if (Input.GetKeyDown(KeyCode.E))
@@ -44,12 +60,12 @@ public class Shop : MonoBehaviour
 
     private void NotEnoughMoney()
     {
-        //текстом в ui
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ ui
         Debug.Log("Not enough Money");
     }
     private void AlreadyWithCard()
     {
-        //текстом в ui
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ ui
         Debug.Log("Already with Card");
     }
 
