@@ -18,7 +18,7 @@ public class Home : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("SDSDDS");
+        
     }
 
 

@@ -80,11 +80,13 @@ public abstract class Mob : MonoBehaviour
     private void UnitRespawn()
     {
         _health = _startHealth;
-        gameObject.SetActive(false);
+        _canApplyDamage = true;
+        gameObject.SetActive(true);
     }
 
     public void StartMovement()
     {
+        _actualAnimManager.SetWalkAnimation();
         _mobMovement.Restart();
     }
     protected abstract void DropLoot();
