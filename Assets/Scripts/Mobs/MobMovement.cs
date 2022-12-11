@@ -1,22 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class MobMovement : MonoBehaviour
 {
-    [SerializeField] private List<Transform> _targetPoints;
-    
     [SerializeField] private float _rotationSpeed;
 
-    private float _speed = 2f;
+    [SerializeField] private float _speed = 2f;
+    
+    private List<Transform> _targetPoints;
+    private Vector3 _targetPoint;
+    private int _targetPointIndex;
+    private int _shiftDirection;
+
     private const float Distance = 1.5f;
     
     private NavMeshAgent _navMeshAgent;
-
-    private Vector3 _targetPoint;
-    private int _targetPointIndex;
 
     private void Awake()
     {
@@ -33,12 +35,15 @@ public class MobMovement : MonoBehaviour
     {
         _targetPointIndex = 0;
         _navMeshAgent.speed = _speed;
+        
+        // -1 or 1
+        _shiftDirection = Random.Range(0, 2) * 2 - 1;
         Patrol();
     }
     
     public void Patrol()
     {
-        if (_targetPoints.Count <= 0)
+        if (_targetPoints == null || _targetPoints.Count == 0)
             return;
         StartCoroutine(PatrolCoroutine());
         MoveToPoint(_targetPoints[_targetPointIndex].position);
@@ -48,14 +53,13 @@ public class MobMovement : MonoBehaviour
     {
         yield return new WaitUntil(() 
             => IsDistanceReached(transform.position,_targetPoints[_targetPointIndex].position, Distance));
+
+        _targetPointIndex = (_targetPointIndex + _shiftDirection) % _targetPoints.Count;
+
+        if (_targetPointIndex < 0)
+            _targetPointIndex += _targetPoints.Count;
         
-        if (_targetPointIndex + 1 != _targetPoints.Count)
-        {
-            _targetPointIndex++;
-            Patrol();
-        }
-        else
-            Stop();
+        Patrol();
     }
     
     private void MoveToPoint(Vector3 position)
@@ -87,5 +91,10 @@ public class MobMovement : MonoBehaviour
     private bool IsDistanceReached(Vector3 firstPoint, Vector3 secondPoint, float distance)
     {
         return Vector3.Distance(firstPoint, secondPoint) < distance;
+    }
+
+    public void SetTargetPoints(List<Transform> targetPoints)
+    {
+        _targetPoints = targetPoints;
     }
 }

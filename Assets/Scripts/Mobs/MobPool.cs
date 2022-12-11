@@ -7,7 +7,8 @@ public class MobPool : MonoBehaviour
 {
     [SerializeField] private List<Mob> _mobs;
     [SerializeField] private List<Transform> _spawnPoints;
-
+    [SerializeField] private List<PathTrajectory> _trajectories;
+    
     private const int _cooldownInMilliseconds = 1000;
     private float _lastSpawnTime;
 
@@ -15,40 +16,56 @@ public class MobPool : MonoBehaviour
     {
         foreach (var mob in _mobs)
         {
-            mob.Died += WaitAndRespawnCitizen;
+            mob.Died += WaitAndRespawnMob;
         }
         
-        SpawnCitizens();
+        SpawnMobs();
     }
 
-    private void SpawnCitizens()
+    private void SpawnMobs()
     {
         for (var i = 0; i < _spawnPoints.Count; i++)
         {
-            SpawnCitizen(_mobs[i], _spawnPoints[i].position);
+            _mobs[i].HouseNumber = i;
+            SpawnMob(_mobs[i], _spawnPoints[i].position);
         }
     }
 
-    private async void WaitAndRespawnCitizen(Mob mob)
+    private async void WaitAndRespawnMob(Mob mob)
     {
         mob.gameObject.SetActive(false);
         await Task.Delay(_cooldownInMilliseconds);
 
-        var spawnPosition = GetSpawnPosition();
-        SpawnCitizen(mob, spawnPosition);
+        var spawnPosition = GetSpawnPosition(mob);
+        SpawnMob(mob, spawnPosition);
     }
 
-    private void SpawnCitizen(Mob mob, Vector3 position)
+    private void SpawnMob(Mob mob, Vector3 position)
     {
         mob.transform.position = position;
         mob.gameObject.SetActive(true);
         
-        //mob.StartMovement();
+        SetMobTrajectory(mob);
+        
+        mob.StartMovement();
     }
 
-    private Vector3 GetSpawnPosition()
+    private void SetMobTrajectory(Mob mob)
     {
-        var randomPointIndex = Random.Range(0, _spawnPoints.Count);
+        var trajectoryNumbers = mob.GetTrajectoryNumbers();
+        var trajectories = new List<PathTrajectory>();
+
+        foreach (var trajectoryNumber in trajectoryNumbers)
+        {
+            trajectories.Add(_trajectories[trajectoryNumber]);
+        }
+            
+        mob.setTrajectory(trajectories);
+    }
+    
+    private Vector3 GetSpawnPosition(Mob mob)
+    {
+        var randomPointIndex = mob.HouseNumber;
         return _spawnPoints[randomPointIndex].position;
     }
 }
