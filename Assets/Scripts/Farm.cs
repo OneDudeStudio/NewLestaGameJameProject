@@ -6,7 +6,14 @@ public class Farm : MonoBehaviour
     [SerializeField] private int _maxCards = 5;
     [SerializeField] private GameObject _cardPrefab;
     [SerializeField] private PlayerCards _playerCards;
+    [SerializeField] private bool _rotEbal;
     private int _cardCount = 0;
+
+    private void Start()
+    {
+        _playerCards = FindObjectOfType<PlayerCards>();
+        _home = FindObjectOfType<Home>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,7 +28,9 @@ public class Farm : MonoBehaviour
                 Destroy(cardComp);
              }
             card.transform.parent = transform.GetChild(_cardCount-1);
-            card.transform.localPosition = Vector3.zero;          
+            card.transform.localPosition = Vector3.zero;
+            if(_rotEbal)
+                card.transform.rotation = Quaternion.Euler(0, 90, 0);
         }
     }   
 }
