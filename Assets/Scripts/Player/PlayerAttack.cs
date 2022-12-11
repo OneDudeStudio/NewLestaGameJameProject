@@ -5,6 +5,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private AttackCollider _attackCollider;
     [SerializeField] private float _attackCoolDown;
     [SerializeField] private float _timeFromLastAttack;
+    [SerializeField] private AnimatorManager animatorManager;
     
 
     private void Update()
@@ -16,7 +17,6 @@ public class PlayerAttack : MonoBehaviour
             if (_timeFromLastAttack >= _attackCoolDown)
             {
                 Attack();
-                Debug.Log("ATTACK");
                 _timeFromLastAttack = 0;
             }
             
@@ -24,7 +24,7 @@ public class PlayerAttack : MonoBehaviour
     }
     public void Attack()
     {
-        //anim
+        animatorManager.SetAttackAnimation();
         _attackCollider.TryAttack();
     }
 }

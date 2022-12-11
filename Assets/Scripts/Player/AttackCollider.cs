@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,12 +6,15 @@ public class AttackCollider : MonoBehaviour
 {
     private List<Mob> _mobsInAttackRange = new List<Mob>();
 
+    [SerializeField] private Collider _attackCollider;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Mob mob))
         {
-            _mobsInAttackRange.Add(mob);
+            mob.ApplyDamage();
+            Debug.LogError("ATTACKED");
+            //_mobsInAttackRange.Add(mob);
         }
             
     }
@@ -25,11 +29,25 @@ public class AttackCollider : MonoBehaviour
 
     public void TryAttack()
     {
-        if (_mobsInAttackRange.Count == 0)
-            return;
-        foreach (Mob mob in _mobsInAttackRange)
-        {
-            mob.ApplyDamage();
-        }
+        EnableCollider();
+        Invoke(nameof(DisableCollider),0.5f);
+        
+        //if (_mobsInAttackRange.Count == 0)
+        //    return;
+        //foreach (Mob mob in _mobsInAttackRange)
+        //{
+        //    Debug.Log("Attack");
+        //    mob.ApplyDamage();
+        //}
+    }
+
+    public void EnableCollider()
+    {
+        _attackCollider.enabled =true;
+    }
+
+    public void DisableCollider()
+    {
+        _attackCollider.enabled =false;
     }
 }

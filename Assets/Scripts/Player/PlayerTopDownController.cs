@@ -40,7 +40,13 @@ public class PlayerTopDownController : MonoBehaviour
     private Vector2 _cursorPosition;
     private Vector2 _offsetVector;
     private Plane _surfacePlane = new Plane();
-    
+
+    [Header("Настройки для анимации игрока")]
+    [SerializeField] private AnimatorManager animatorManager;
+
+    public bool IsMoving;
+    public bool IsStaying;
+
     void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -82,7 +88,7 @@ public class PlayerTopDownController : MonoBehaviour
         ApplyGravity();
         CameraFollow(cameraOffset);
         AimRotation();
-        RotateHead();
+        //RotateHead();
         RotateBody();
     }
 
@@ -94,6 +100,21 @@ public class PlayerTopDownController : MonoBehaviour
         velocityChange.z = Mathf.Clamp(velocityChange.z, -_maxVelocityChange, _maxVelocityChange);
         velocityChange.y = 0;
         _rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
+        
+        if (velocityChange != Vector3.zero && IsMoving != true)
+        {
+            animatorManager.PlayerAnimator.SetBool("IsRun",true);
+            IsMoving = true;
+            IsStaying = false;
+        }
+        
+        if (velocityChange == Vector3.zero && IsMoving == true)
+        {
+            animatorManager.PlayerAnimator.SetBool("IsRun",false);
+            IsMoving = false;
+            IsStaying = true;
+        }
+        
     }
 
     private void ApplyGravity()
@@ -119,12 +140,6 @@ public class PlayerTopDownController : MonoBehaviour
     private void RotateHead()
     {
         head.LookAt(new Vector3(_targetObject.transform.position.x, head.position.y, _targetObject.transform.position.z));
-        
-        if (Vector3.Angle(head.forward,body.forward)<70)
-        {
-            
-           // Debug.Log(head.rotation.eulerAngles.y);
-        }
         
         //head.localRotation = Quaternion.Euler(head.rotation.x ,Mathf.Clamp(head.rotation.y,-50,50),head.rotation.z);
        // head.localRotation = Quaternion.Euler(head.localRotation.x,
