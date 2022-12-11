@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Wallet : MonoBehaviour
 {
-    private float _money = 100;
+    private float _money = 300;
     
     [SerializeField] private UIController _uiController;
     private PlayerCards _playerCards;

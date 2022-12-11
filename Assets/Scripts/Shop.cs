@@ -3,7 +3,8 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     [SerializeField] private Wallet _wallet;
-    [SerializeField] private int _cardPrice = 26;
+    [SerializeField] private int _cardPrice = 5;
+    [SerializeField] private int _priceAdding = 5;
     [SerializeField] private PlayerCards _playerCards;
     [SerializeField] private bool _isInShop = false;
 
@@ -37,6 +38,7 @@ public class Shop : MonoBehaviour
 
     private void AddCard()
     {
+        _cardPrice += _priceAdding;
         Debug.Log("Bying card");
     }
 

@@ -26,13 +26,4 @@ public class Mining : MonoBehaviour
     {
         _graphicsCardNum++;
     }
-    public bool TryAddGraphicsCard()
-    {
-        if(_graphicsCardNum < _graphicsCardMaxNum-1)
-        {
-            _graphicsCardNum++;
-            return true;
-        }
-        return false;
-    }
 }

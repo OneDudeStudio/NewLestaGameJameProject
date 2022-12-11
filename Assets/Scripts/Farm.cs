@@ -13,16 +13,15 @@ public class Farm : MonoBehaviour
         if (_playerCards.IsWithCard() && _cardCount < _maxCards)
         {
             _cardCount++;
+            _home.AddCard();
             _playerCards.RemoveCard();
             GameObject card = Instantiate(_cardPrefab, transform.position, Quaternion.identity);
              if (card.TryGetComponent(out Card cardComp))
              {
                 Destroy(cardComp);
              }
-            Debug.Log(_cardCount);
             card.transform.parent = transform.GetChild(_cardCount-1);
-            card.transform.localPosition = Vector3.zero;
-            //visual            
+            card.transform.localPosition = Vector3.zero;          
         }
     }   
 }

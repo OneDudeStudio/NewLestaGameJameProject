@@ -19,6 +19,6 @@ public class Home : MonoBehaviour
 
     private void EndOfGame()
     {
-
+        Debug.Log("end");
     }
 }
