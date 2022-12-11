@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class MobMovement : MonoBehaviour
@@ -81,7 +83,7 @@ public class MobMovement : MonoBehaviour
         transform.rotation =
             Quaternion.RotateTowards(transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
     }
-
+    
     public void Stop()
     {
         _navMeshAgent.speed = 0;
