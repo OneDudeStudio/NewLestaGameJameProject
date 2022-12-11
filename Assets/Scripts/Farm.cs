@@ -10,7 +10,7 @@ public class Farm : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_playerCards.IsWithCard() || _cardCount < _maxCards)
+        if (_playerCards.IsWithCard() && _cardCount < _maxCards)
         {
             _cardCount++;
             _playerCards.RemoveCard();
@@ -19,9 +19,9 @@ public class Farm : MonoBehaviour
              {
                 Destroy(cardComp);
              }
-            card.transform.parent = transform;
-            card.transform.localPosition = new Vector3(0.088f, 0.23f, 0);
-            card.transform.localRotation = Quaternion.EulerAngles(-90, 0, 180);
+            Debug.Log(_cardCount);
+            card.transform.parent = transform.GetChild(_cardCount-1);
+            card.transform.localPosition = Vector3.zero;
             //visual            
         }
     }   

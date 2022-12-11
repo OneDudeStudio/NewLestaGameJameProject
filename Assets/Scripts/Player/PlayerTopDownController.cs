@@ -123,7 +123,7 @@ public class PlayerTopDownController : MonoBehaviour
         if (Vector3.Angle(head.forward,body.forward)<70)
         {
             
-            Debug.Log(head.rotation.eulerAngles.y);
+           // Debug.Log(head.rotation.eulerAngles.y);
         }
         
         //head.localRotation = Quaternion.Euler(head.rotation.x ,Mathf.Clamp(head.rotation.y,-50,50),head.rotation.z);
