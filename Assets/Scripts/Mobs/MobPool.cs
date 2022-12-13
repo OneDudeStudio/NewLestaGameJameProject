@@ -41,7 +41,7 @@ public class MobPool : MonoBehaviour
     private async void WaitAndRespawnMob(Mob mob)
     {
         mob.gameObject.SetActive(false);
-        
+
         if (mob is MinerMob)
             await Task.Delay(_minerMobCooldownInSeconds * 1000);
         else
@@ -54,7 +54,7 @@ public class MobPool : MonoBehaviour
     private void SpawnMob(Mob mob, Vector3 position)
     {
         mob.transform.position = position;
-        mob.gameObject.SetActive(true);
+        mob.Recover();
         
         SetMobTrajectory(mob);
         

@@ -30,7 +30,6 @@ public abstract class Mob : MonoBehaviour
         int num = Random.Range(0, 2);
         SetUpUnit(num == 0);
         _startHealth = _health;
-        
     }
 
     private void SetUpUnit(bool isFemale)
@@ -72,12 +71,9 @@ public abstract class Mob : MonoBehaviour
         Died?.Invoke(this);
         DropLoot();
         _canApplyDamage = false;
-        //
-        Invoke(nameof(UnitRespawn),1f);
-        
     }
 
-    private void UnitRespawn()
+    public void Recover()
     {
         _health = _startHealth;
         _canApplyDamage = true;
