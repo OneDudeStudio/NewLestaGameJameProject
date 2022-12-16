@@ -78,7 +78,7 @@ public class MobMovement : MonoBehaviour
     private void RotateToPoint(Vector3 position)
     {
         var direction = (position - transform.position).normalized;
-        transform.forward = position;
+        transform.forward = direction;
     }
     
     public void Stop()

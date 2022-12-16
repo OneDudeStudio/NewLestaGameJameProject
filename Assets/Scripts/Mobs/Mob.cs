@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public abstract class Mob : MonoBehaviour
 {
     [SerializeField] private float _health;
+    private float _startHealth;
 
     [SerializeField] private int[] _trajectoryNumbers;
     public int HouseNumber { get; set; }
@@ -28,6 +29,7 @@ public abstract class Mob : MonoBehaviour
         _mobMovement = GetComponent<MobMovement>();
         int num = Random.Range(0, 2);
         SetUpUnit(num == 0);
+        _startHealth = _health;
         
     }
 
@@ -77,11 +79,14 @@ public abstract class Mob : MonoBehaviour
 
     private void UnitRespawn()
     {
-        gameObject.SetActive(false);
+        _health = _startHealth;
+        _canApplyDamage = true;
+        gameObject.SetActive(true);
     }
 
     public void StartMovement()
     {
+        _actualAnimManager.SetWalkAnimation();
         _mobMovement.Restart();
     }
     protected abstract void DropLoot();

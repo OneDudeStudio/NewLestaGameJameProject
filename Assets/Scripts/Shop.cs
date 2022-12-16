@@ -7,10 +7,6 @@ public class Shop : MonoBehaviour
     [SerializeField] private int _priceAdding = 5;
     [SerializeField] private PlayerCards _playerCards;
     [SerializeField] private bool _isInShop = false;
-
-    private void OnTriggerEnter(Collider other) => _isInShop = true;
-    private void OnTriggerExit(Collider other) => _isInShop = false;
-    
     public UIController UIController;
 
 
@@ -19,9 +15,13 @@ public class Shop : MonoBehaviour
         UIController = FindObjectOfType<UIController>();
     }
 
+    private void OnTriggerEnter(Collider other) => _isInShop = true;
+    private void OnTriggerExit(Collider other) => _isInShop = false;
+
 
     private void Update()
     {
+
         if (_isInShop)
         {
             UIController.SetCanvasActive(UIController._shopCanvas);
